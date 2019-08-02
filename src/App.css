@@ -1,0 +1,32 @@
+html, body {
+  background-color: #282c34;
+  height: 100%;
+  width: 100%;
+}
+
+.App-header {
+  --height: 50px;
+  font-size: 1.3em;
+  color: white;
+
+  width: 100%;
+  height: var(--height);
+  line-height: var(--height);
+  z-index: 10;
+
+  background-color: #2f3640;
+}
+
+.App-logo {
+  margin: 0 10px 0 10px;
+  font-size: 2em;
+  font-weight: 200;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.App-main {
+  padding-top: 20px;
+}
