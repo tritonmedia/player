@@ -1,4 +1,11 @@
-.player {
-  width: 100%;
-  height: 100%;
+.player-container {
+  width: 100% !important;
+  height: 50% !important;
+}
+
+.media-information {
+  padding-right: 4%;
+  padding-left: 4%;
+  display: inline-block;
+  color: white;
 }

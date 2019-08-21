@@ -1,5 +1,4 @@
 import React from 'react';
-import './home.css';
 
 import LolmoRow from '../../components/LolmoRow'
 import Header from '../../components/Navbar'
@@ -15,7 +14,7 @@ function Home() {
       <div className="App-main">
         {categories.map(cat => {
           const formatted = cat.charAt(0).toUpperCase() + cat.slice(1)
-          return <LolmoRow name={formatted} type={cat} items={[]} />
+          return <LolmoRow key={cat} name={formatted} type={cat} items={[]} />
         })}
       </div>
     </div>

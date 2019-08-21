@@ -9,12 +9,22 @@ import React from 'react';
 import './index.css'
 import Plyr from 'plyr';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
 class MediaItem extends React.Component {
   render() {
     return (
-      <video id="player"></video>
+      <div className="media-container">
+        <div className="player-container">
+          <video id="player"></video>
+        </div>
+        <div className="media-information">
+          <h1 className="media-title">
+            {this.props.title}
+          </h1>
+          <p className="media-description">
+            {this.props.item.overview}
+          </p>
+        </div>
+      </div>
     )
   }
 
@@ -28,19 +38,20 @@ class MediaItem extends React.Component {
     const plyr_files = files.data.map(file => {
       return {
         src: file.url,
-        type: 'video/mp4',
+        type: 'video/webm',
         size: parseInt(file.quality.replace('p', ''), 10)
       }
     })
 
-    console.log(plyr_files)
+    console.log('files', plyr_files)
 
     const player = new Plyr('#player');
-
+    console.log('plyr background url', this.props.backgroundURL)
     player.source = {
       type: 'video',
       title: this.props.title,
       sources: plyr_files,
+      poster: this.props.backgroundURL
     }
   }
 }

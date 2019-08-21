@@ -10,7 +10,12 @@ class Home extends React.Component {
       <div>
         <Header nested={true} history={this.props.history} />
         <div className="App-main">
-          <MediaPlayer id={this.props.match.params.id} title={this.props.location.state.title} />
+          <MediaPlayer 
+            id={this.props.match.params.id} 
+            title={this.props.location.state.title}
+            imageURL={this.props.location.state.imageURL}
+            backgroundURL={this.props.location.state.backgroundURL}
+            item={this.props.location.state.item} />
         </div>
       </div>
     )

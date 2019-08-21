@@ -34,8 +34,23 @@ class LolmoRow extends React.Component {
     const series = await window.APIClient.listSeries(this.props.type)
     const items = series.data.map(item => {
       const posters = item.images.filter(img => img.image_type === 'poster')
-      console.log('found posters', posters)
+      const backgrounds = item.images.filter(img => img.image_type === 'background')
       const rankedImages = posters.sort((a, b) => b.rating - a.rating)
+      const rankedBg = backgrounds.sort((a,b) => b.rating - a.rating)
+
+      // TODO(jaredallard): placeholder images
+      if (rankedImages.length === 0) {
+        rankedImages.push({
+          url: null
+        })
+      }
+      if (rankedBg.length === 0) {
+        rankedBg.push({
+          url: null
+        })
+      }
+
+      console.log(backgrounds, rankedBg)
 
       // TODO(jaredallard): default image
 
@@ -45,6 +60,8 @@ class LolmoRow extends React.Component {
           key={item.id}
           title={item.title}
           imageUrl={rankedImages[0].url}
+          backgroundURL={rankedBg[0].url}
+          item={item}
         />)
     })
     this.setState({items})

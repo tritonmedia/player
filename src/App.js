@@ -1,14 +1,9 @@
 import React from 'react';
 
-import LolmoRow from './components/LolmoRow'
-import './App.css'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
 import Home from './routes/home'
 import Player from './routes/player'
-
-// TODO(jaredallard): fix when we add categories and stuff
-const categories = ['movie', 'tv']
+import './App.css'
 
 function App() {
 

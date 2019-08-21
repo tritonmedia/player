@@ -17,7 +17,10 @@ class MediaItem extends React.Component {
         <Link to={{
           pathname: `/play/${this.props.id}`,
           state: {
-            title: this.props.title
+            title: this.props.title,
+            imageURL: this.props.imageUrl,
+            backgroundURL: this.props.backgroundURL,
+            item: this.props.item
           }
         }}>
         <div className="backdrop">
