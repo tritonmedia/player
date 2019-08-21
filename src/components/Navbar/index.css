@@ -1,0 +1,32 @@
+.Navbar-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0 .29em;
+  background: transparent;
+  text-align: center;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  z-index: 0;
+  min-width: initial;
+  min-height: initial;
+  width: auto;
+  height: auto;
+  padding: .556em;
+  vertical-align: middle;
+  border: 0;
+  vertical-align: middle;
+  outline: none !important;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  justify-content: center;
+}

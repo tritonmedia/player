@@ -15,13 +15,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <div className="App-logo">TRITON</div>
-        </header>
-        <div className="App-main">
           <Route path="/" exact component={Home} />
           <Route path="/play/:id" component={Player} />
-        </div>
       </div>
     </Router>
   );
