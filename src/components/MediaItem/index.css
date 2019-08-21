@@ -4,8 +4,12 @@
   padding-left: 10px;
 }
 
+.mediaItem :hover {
+  opacity: 0.7;
+}
+
 .mediaItem .backdrop img {
-  height: 175px;
+  height: 275px;
   width: auto;
 }
 
