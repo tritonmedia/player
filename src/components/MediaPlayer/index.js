@@ -35,9 +35,6 @@ class MediaItem extends React.Component {
 
   async componentDidMount() {
     const eps = await window.APIClient.listEpisodes(this.props.id)
-    if (eps.data.length > 1) {
-      throw new Error('tv series not implemented')
-    }
 
     // TODO(jaredallard): support resuming x episode
     const files = await window.APIClient.getEpisodeFiles(this.props.id, eps.data[0].id)
