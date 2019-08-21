@@ -20,6 +20,11 @@ class MediaItem extends React.Component {
           <h1 className="media-title">
             {this.props.title}
           </h1>
+          <p className="media-dr">
+            {this.props.item.first_aired.split('-')[0]}
+            <i className="material-icons media-star-icon"></i>
+            {Math.round(parseInt(this.props.item.rating, 10) * 100) / 100}
+          </p>
           <p className="media-description">
             {this.props.item.overview}
           </p>
@@ -34,6 +39,7 @@ class MediaItem extends React.Component {
       throw new Error('tv series not implemented')
     }
 
+    // TODO(jaredallard): support resuming x episode
     const files = await window.APIClient.getEpisodeFiles(this.props.id, eps.data[0].id)
     const plyr_files = files.data.map(file => {
       return {

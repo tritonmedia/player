@@ -9,3 +9,13 @@
   display: inline-block;
   color: white;
 }
+
+.media-dr {
+  color: #A6A6A6;
+}
+
+.media-star-icon {
+  font-size: 0.9em;
+  padding-left: 20px;
+  padding-right: 5px;
+}
