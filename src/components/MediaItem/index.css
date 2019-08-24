@@ -1,16 +1,43 @@
 .mediaItem {
-  display: block;
+  flex: 0 0 auto;
   padding-right: 10px;
   padding-left: 10px;
+  text-align: center;
 }
+
+.media {
+  width: 187px;
+}
+
+.wide {
+  width: 200px;
+}
+
+.mediaItem a {
+  text-decoration: none;
+}
+
 
 .mediaItem :hover {
   opacity: 0.7;
 }
 
-.mediaItem .backdrop img {
+.backdrop {
+  text-align: center;
+}
+
+.backdrop img {
+  display: inline-block;
+}
+
+.media img {
   height: 275px;
-  width: auto;
+  width: 187px;
+}
+
+.wide img {
+  height: 150px;
+  width: 200px;
 }
 
 .mediaItem .info {

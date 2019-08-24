@@ -15,7 +15,12 @@ class Header extends React.Component {
       <header className="App-header">
         {
           this.props.history ? 
-            <button type="button" onClick={this.props.history.goBack} className="Navbar-button"><i className="material-icons"></i></button>
+            (
+              <div className="btns">
+                <button type="button" onClick={this.props.history.goBack} className="Navbar-button"><i className="material-icons"></i></button>
+                <button type="button" onClick={() => window.location='/'} className="Navbar-button"><i className="material-icons">home</i></button>
+              </div>
+            )
             :
             logo
         }

@@ -4,20 +4,22 @@
   margin-left: 20px;
 }
 
-.lolmoRow .rowHeader::after {
-  content: ' >';
-}
-
 .lolmoRow {
   width: 100%;
 }
 
 .lolmoRow .items {
-  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
   display: flex;
-  padding-top: 30px;
-  padding-right: 4%;
-  padding-left: 4%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  max-width: 100%;
+  min-width: 200px;
 }::-webkit-scrollbar{
   width: 0;
+}
+
+.lolmoRow .items .loading {
+  color: #FFFFFF;
 }

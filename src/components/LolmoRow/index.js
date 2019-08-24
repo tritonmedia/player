@@ -14,7 +14,8 @@ class LolmoRow extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      items: []
+      items: [],
+      isLoading: false
     }
   }
   render() {
@@ -24,13 +25,14 @@ class LolmoRow extends React.Component {
           {this.props.name}
         </h2>
         <div className="items">
-          {this.state.items}
+          {this.state.isLoading ? <div className="loading">Loading ...</div> : this.state.items}
         </div>
       </div>
     )
   }
 
   async componentDidMount() {
+    this.setState({ isLoading: true })
     const series = await window.APIClient.listSeries(this.props.type)
     const items = series.data.map(item => {
       const posters = item.images.filter(img => img.image_type === 'poster')
@@ -64,7 +66,7 @@ class LolmoRow extends React.Component {
           item={item}
         />)
     })
-    this.setState({items})
+    this.setState({items, isLoading: false})
   }
 }
 

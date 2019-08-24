@@ -43,7 +43,16 @@ class API {
       headers,
       body: Object.keys(body).length === 0 ? undefined : body,
     })
-    return res.json()
+    const resp = await res.json()
+
+    console.log(resp)
+    
+    // error occured, throw it
+    if (!resp.data && resp.metadata && !resp.metadata.success) {
+      throw new Error(resp.metadata.error_message)
+    }
+
+    return resp
   }
 
   /**
