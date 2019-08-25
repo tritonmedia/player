@@ -9,10 +9,9 @@ class SeriesPlayer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      redirect: ''
+      series: props.location.state.series
     }
   }
-
   render() {
     return (
       <div>
@@ -23,13 +22,23 @@ class SeriesPlayer extends React.Component {
             episode_id={this.props.match.params.episode_id}
             backgroundURL={this.props.location.state.backgroundURL}
             item={this.props.location.state.item}
-            series={this.props.location.state.series} />
+            series={this.state.series} />
         </div>
       </div>
     )
   }
 
+  // TODO(jaredallard): probably move this somewhere else
+  async componentWillMount() {
+    if (!this.props.location.state.series) {
+      const series = await window.APIClient.getSeries(this.props.match.params.id)
+      this.state.series = series.data
+      this.forceUpdate()
+    }
+  }
+
   async componentDidMount() {
+
     if (!this.props.episode_id && this.props.location.state.item.type === 2) {
       const eps = await window.APIClient.listEpisodes(this.props.match.params.id)
       eps.data = eps.data.sort((a, b) => a.absolute_number - b.absolute_number)

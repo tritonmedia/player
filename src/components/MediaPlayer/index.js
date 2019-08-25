@@ -19,7 +19,6 @@ class EpisodeList extends React.Component {
       items: [],
       isLoading: false
     }
-    console.log(props)
   }
   render() {
     return (
@@ -70,7 +69,7 @@ class MediaPlayer extends React.Component {
           </h3>
           <p className="media-dr">
             {(this.props.item.first_aired ? this.props.item.first_aired : this.props.item.air_date).split('-')[0]}
-            <i className="material-icons media-star-icon"></i>
+            <i className="material-icons media-star-icon">star</i>
             {Math.round(parseInt(this.props.item.rating || 10, 10) * 100) / 100}
           </p>
           <p className="media-description">
@@ -119,8 +118,6 @@ class MediaPlayer extends React.Component {
       sources: plyr_files,
       poster: this.props.backgroundURL ? this.props.backgroundURL : this.props.item.thumbnail_url
     }
-
-    console.log(player.source)
 
     this.setState({
       player,
