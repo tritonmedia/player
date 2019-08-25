@@ -37,6 +37,7 @@ class API {
       url += '?' + qs.stringify(params)
     }
 
+    const sent = Date.now()
     const res = await fetch(url, {
       method: method,
       mode: 'cors',
@@ -44,8 +45,9 @@ class API {
       body: Object.keys(body).length === 0 ? undefined : body,
     })
     const resp = await res.json()
+    const recv = Date.now()
 
-    console.log(method, endpoint, resp)
+    console.log(res.status.toString(), `${recv - sent}ms`, method, endpoint, resp)
     
     // error occured, throw it
     if (!resp.data && resp.metadata && !resp.metadata.success) {
