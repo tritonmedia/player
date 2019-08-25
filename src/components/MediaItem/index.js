@@ -15,7 +15,7 @@ class MediaItem extends React.Component {
     return (
       <div className={"mediaItem" + (this.props.wide ? ' wide' : ' media')}>
         <Link to={{
-          pathname: `${this.props.episode_id ? `/episode/${this.props.id}/${this.props.episode_id}`: `/play/${this.props.id}`}`,
+          pathname: `${this.props.episode_id ? `/play/${this.props.id}/${this.props.episode_id}`: `/play/${this.props.id}`}`,
           state: {
             title: this.props.title,
             imageURL: this.props.imageUrl,

@@ -50,7 +50,8 @@ class MediaPlayer extends React.Component {
     super(props)
     this.state = {
       episodes: [],
-      player: {}
+      player: {},
+      series: {},
     }
   }
 
@@ -67,13 +68,13 @@ class MediaPlayer extends React.Component {
           <p className="media-dr">
             {(this.props.item.first_aired ? this.props.item.first_aired : this.props.item.air_date).split('-')[0]}
             <i className="material-icons media-star-icon"></i>
-            {Math.round(parseInt(this.props.item.rating, 10) * 100) / 100}
+            {Math.round(parseInt(this.props.item.rating || 10, 10) * 100) / 100}
           </p>
           <p className="media-description">
-            {this.props.item.overview}
+            {this.props.item.overview || this.props.item.description}
           </p>
           <br /><br />
-          <EpisodeList series_id={this.props.id} eps={this.state.episodes} series={this.props.item} type="tv"/>
+          {this.state.series.type === 2 ? <EpisodeList series_id={this.props.id} eps={this.state.episodes} series={this.props.item} type="tv"/> : ''}
         </div>
       </div>
     )
@@ -86,7 +87,7 @@ class MediaPlayer extends React.Component {
     let files = { data: [] }
     try {
       // use the first episode or a manually specified one
-      let episode_id = this.props.item.id ? this.props.item.id : this.episodes[0].id
+      let episode_id = eps.data[0].id
       files = await window.APIClient.getEpisodeFiles(this.props.id, episode_id)
     } catch (err) {
       // TODO(jaredallard): better handling of this
@@ -114,7 +115,8 @@ class MediaPlayer extends React.Component {
 
     this.setState({
       player,
-      episodes: eps.data
+      episodes: eps.data,
+      series: this.props.item
     })
   }
 
@@ -125,8 +127,8 @@ class MediaPlayer extends React.Component {
     let files = { data: [] }
     try {
       // use the first episode or a manually specified one
-      let episode_id = this.props.item.id ? this.props.item.id : this.episodes[0].id
-      files = await window.APIClient.getEpisodeFiles(this.props.id, episode_id)
+      let episode_id = props.item.id
+      files = await window.APIClient.getEpisodeFiles(props.id, episode_id)
     } catch (err) {
       // TODO(jaredallard): better handling of this
       if (err.message !== 'Not Found') {
@@ -143,9 +145,9 @@ class MediaPlayer extends React.Component {
 
     player.source = {
       type: 'video',
-      title: this.props.item.title,
+      title: props.item.title,
       sources: plyr_files,
-      poster: this.props.backgroundURL ? this.props.backgroundURL : this.props.item.thumbnail_url
+      poster: props.backgroundURL ? props.backgroundURL : props.item.thumbnail_url
     }
 
     this.setState({player})

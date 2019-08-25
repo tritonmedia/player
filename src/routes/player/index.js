@@ -21,20 +21,4 @@ class SeriesPlayer extends React.Component {
   }
 }
 
-class EpisodePlayer extends React.Component {
-  render() {
-    return (
-      <div>
-        <Header nested={true} history={this.props.history} />
-        <div className="App-main">
-          <MediaPlayer 
-            id={this.props.match.params.id}
-            episode_id={this.props.match.params.episode_id}
-            item={this.props.location.state.item} />
-        </div>
-      </div>
-    )
-  }
-}
-
-export { SeriesPlayer, EpisodePlayer }
+export { SeriesPlayer }

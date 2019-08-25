@@ -11,8 +11,7 @@ function App() {
     <Router>
       <div className="App">
           <Route path="/" exact component={Home} />
-          <Route path="/play/:id" component={SeriesPlayer} />
-          <Route path="/episode/:id/:episodeid" component={EpisodePlayer} />
+          <Route path={["/play/:id", "/play/:id/:episodeid"]} component={SeriesPlayer} />
       </div>
     </Router>
   );

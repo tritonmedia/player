@@ -6,7 +6,7 @@ import App from './App';
 import API from './lib/api'
 
 window.APIClient = new API(
-  'c03141f5c9e3237f4d199949bf6bc9115f05cb2489cda6cf757cfb07837aa8eed7117e83aaa7452542146aadb019cffe8d3b3cc7709433f012f9a8fd2e9e1300',
+  'c030ab5c6519f6e0765f3d88302fa2e63942fc9f32ea314fbffa209a76be7d8db4124f0fbca67f100ba365ef388c3481d694e0d7e21ee8f27e7d529996389016',
   'http://127.0.0.1:3401'
 )
 window.S3_URL = 'http://127.0.0.1:9000/'

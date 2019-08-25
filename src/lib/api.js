@@ -45,7 +45,7 @@ class API {
     })
     const resp = await res.json()
 
-    console.log(resp)
+    console.log(method, endpoint, resp)
     
     // error occured, throw it
     if (!resp.data && resp.metadata && !resp.metadata.success) {
