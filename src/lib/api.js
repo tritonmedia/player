@@ -84,7 +84,7 @@ class API {
   async getSeries(id) {
     return this.req('GET', `/v1/series/${id}`)
   }
-
+  
   /**
    * Return a list of files for an episode
    * @param {String} seriesId series id

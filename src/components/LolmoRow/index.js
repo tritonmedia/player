@@ -51,12 +51,7 @@ class LolmoRow extends React.Component {
           url: null
         })
       }
-
-      console.log(backgrounds, rankedBg)
-
-      // TODO(jaredallard): default image
-
-      console.log('using image', rankedImages[0])
+      
       return (<MediaItem
           id={item.id}
           key={item.id}
