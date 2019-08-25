@@ -3,8 +3,16 @@ import React from 'react';
 
 import MediaPlayer from '../../components/MediaPlayer'
 import Header from '../../components/Navbar'
+import { BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom";
 
 class SeriesPlayer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      redirect: ''
+    }
+  }
+
   render() {
     return (
       <div>
@@ -14,10 +22,26 @@ class SeriesPlayer extends React.Component {
             id={this.props.match.params.id}
             episode_id={this.props.match.params.episode_id}
             backgroundURL={this.props.location.state.backgroundURL}
-            item={this.props.location.state.item} />
+            item={this.props.location.state.item}
+            series={this.props.location.state.series} />
         </div>
       </div>
     )
+  }
+
+  async componentDidMount() {
+    if (!this.props.episode_id && this.props.location.state.item.type === 2) {
+      const eps = await window.APIClient.listEpisodes(this.props.match.params.id)
+      eps.data = eps.data.sort((a, b) => a.absolute_number - b.absolute_number)
+
+      // filter 0 season episodes because those are hard to handle currently
+      if (this.props.location.state.item.type === 2) eps.data = eps.data.filter(ep => ep.season !== 0)
+      console.log('redirecting to last watched / initial episode')
+      this.props.history.replace(`/play/${this.props.match.params.id}/${eps.data[0].id}`, {
+        item: eps.data[0],
+        series: this.props.item
+      })
+    }
   }
 }
 

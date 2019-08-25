@@ -63,8 +63,11 @@ class MediaPlayer extends React.Component {
         </div>
         <div className="media-information">
           <h1 className="media-title">
-            {this.props.item.title}
+            {this.state.series.title}
           </h1>
+          <h3 className="media-subtitle">
+            {this.props.item.title}
+          </h3>
           <p className="media-dr">
             {(this.props.item.first_aired ? this.props.item.first_aired : this.props.item.air_date).split('-')[0]}
             <i className="material-icons media-star-icon"></i>
@@ -82,6 +85,12 @@ class MediaPlayer extends React.Component {
 
   async componentDidMount() {
     const eps = await window.APIClient.listEpisodes(this.props.id)
+    eps.data = eps.data.sort((a, b) => a.absolute_number - b.absolute_number)
+
+    const series = this.props.series || this.props.item
+
+    // filter 0 season episodes because those are hard to handle currently
+    if (series.type === 2) eps.data = eps.data.filter(ep => ep.season !== 0)
 
     // TODO(jaredallard): support resuming x episode
     let files = { data: [] }
@@ -116,7 +125,7 @@ class MediaPlayer extends React.Component {
     this.setState({
       player,
       episodes: eps.data,
-      series: this.props.item
+      series
     })
   }
 
