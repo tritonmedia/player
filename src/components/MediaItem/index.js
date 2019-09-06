@@ -11,7 +11,30 @@ import './index.css'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class MediaItem extends React.Component {
+  state = {
+    loading: true
+  }
+
+  style = loading => {
+    return {
+      transition: '0.5s filter linear',
+      filter: `${loading ? 'blur(50px)' : ''}`,
+    }
+  }
+
+  componentDidMount() {
+    this.fetchImage(this.props.imageUrl)
+  }
+
+  fetchImage = src => {
+    const image = new Image()
+    image.onload = () => this.setState({ currentImage: this.loadingImage.src, loading: false })
+    image.src = src
+    this.loadingImage = image
+  }
+
   render() {
+    const { currentImage, loading } = this.state
     return (
       <div className={"mediaItem" + (this.props.wide ? ' wide' : ' media')}>
         <Link to={{
@@ -24,7 +47,7 @@ class MediaItem extends React.Component {
           }
         }}>
         <div className={"backdrop" + (this.props.wide ? ' wide' : ' media')}>
-          <img src={this.props.imageUrl} alt={`${this.props.title} backdrop`} align="middle"></img>
+          <img style={this.style(loading)} src={currentImage} alt={`${this.props.title} backdrop`} align="middle"></img>
         </div>
         <div className="info">
           {this.props.title}
