@@ -59,7 +59,7 @@ class SeriesPlayer extends React.Component {
 
     let series = this.props.location.state.series
     if (!series) {
-      console.log('player::didMount(): series state is empty, fetching from API')
+      console.log(loggerPrefix, 'series state is empty, fetching from API')
       const s = await window.APIClient.getSeries(seriesID)
       series = s.data
     }

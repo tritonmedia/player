@@ -52,7 +52,7 @@ class MediaPlayer extends React.Component {
     return (
       <div className="media-container">
         <div className="player-container">
-          <video id="player"></video>
+          <video id="player" crossOrigin="anonymous"></video>
         </div>
         <div className="media-information">
           <h1 className="media-title">
@@ -98,6 +98,16 @@ class MediaPlayer extends React.Component {
         throw err
       }
     }
+
+    let subtitles = { data: [] }
+    try {
+      subtitles = await window.APIClient.getSubtitles(series.id, episode.id)
+    } catch (err) {
+      if (err.message !== 'Not Found') {
+        console.log('mediaplayer::didUpdate(): no subtitles found')
+      }
+    }
+
     const plyr_files = files.data.map(file => {
       return {
         src: file.url,
@@ -106,11 +116,21 @@ class MediaPlayer extends React.Component {
       }
     })
 
+    const captions = subtitles.data.map(sub => {
+      return {
+        kind: 'captions',
+        label: sub.language,
+        srclang: sub.language,
+        src: sub.url
+      }
+    })
+
     this.player.source = {
       type: 'video',
       title: props.episode.title,
       sources: plyr_files,
-      imageURL: props.episode.thumbnail_url
+      imageURL: props.episode.thumbnail_url,
+      tracks: captions,
     }
   }
 }

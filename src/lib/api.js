@@ -88,10 +88,19 @@ class API {
   /**
    * Return a list of files for an episode
    * @param {String} seriesId series id
-   * @param {*} episodeId epsiode id
+   * @param {String} episodeId epsiode id
    */
   async getEpisodeFiles(seriesId, episodeId) {
     return this.req('GET', `/v1/episodes/${seriesId}/files/${episodeId}`)
+  }
+
+  /**
+   * Return a list of subtitiles for an episode
+   * @param {String} seriesId series id
+   * @param {String} episodeId epsiode id
+   */
+  async getSubtitles(seriesId, episodeId) {
+    return this.req('GET', `/v1/subtitles/${seriesId}/${episodeId}`)
   }
 
   /**
